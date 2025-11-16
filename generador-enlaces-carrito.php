@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:       Generador de enlaces al carrito
- * Plugin URI:        https://example.com/
+ * Plugin URI:        https://webprogramacion.com
  * Description:       Genera enlaces personalizados para añadir productos al carrito utilizando un parámetro propio y redirigir a carrito o checkout.
  * Version:           1.0.0
- * Author:            OpenAI Assistant
- * Author URI:        https://openai.com/
+ * Author:            Dámaso Velázquez Álvarez
+ * Author URI:        https://webprogramacion.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       generador-enlaces-carrito
