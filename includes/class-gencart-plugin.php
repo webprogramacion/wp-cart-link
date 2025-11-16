@@ -26,7 +26,7 @@ class Gencart_Plugin {
      *
      * @var string
      */
-    protected $plugin_name = 'generador-enlaces-carrito';
+    protected $plugin_name = 'cart-link';
 
     /**
      * Admin handler.
@@ -47,7 +47,6 @@ class Gencart_Plugin {
      */
     public function run() {
         $this->load_dependencies();
-        $this->set_locale();
         $this->define_admin_hooks();
         $this->define_public_hooks();
     }
@@ -58,20 +57,6 @@ class Gencart_Plugin {
     private function load_dependencies() {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-gencart-admin.php';
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-gencart-public.php';
-    }
-
-    /**
-     * Register text domain loader.
-     */
-    private function set_locale() {
-        add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
-    }
-
-    /**
-     * Load text domain for translations.
-     */
-    public function load_textdomain() {
-        load_plugin_textdomain( 'generador-enlaces-carrito', false, dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages' );
     }
 
     /**

@@ -8,7 +8,7 @@
  * Author URI:        https://webprogramacion.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       generador-enlaces-carrito
+ * Text Domain:       cart-link
  * Domain Path:       /languages
  */
 
@@ -28,7 +28,7 @@ define( 'GENCART_OPTION_DEFAULT_DEST', 'gencart_default_destination' );
 function gencart_activate() {
     if ( ! class_exists( 'WooCommerce' ) ) {
         deactivate_plugins( plugin_basename( __FILE__ ) );
-        wp_die( esc_html__( 'Este plugin requiere WooCommerce activo.', 'generador-enlaces-carrito' ) );
+        wp_die( esc_html__( 'Este plugin requiere WooCommerce activo.', 'cart-link' ) );
     }
 }
 register_activation_hook( __FILE__, 'gencart_activate' );

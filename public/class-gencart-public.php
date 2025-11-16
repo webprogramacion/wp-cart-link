@@ -72,7 +72,7 @@ class Gencart_Public {
         }
 
         if ( ! $product->is_purchasable() || ! $product->is_in_stock() ) {
-            wc_add_notice( esc_html__( 'El producto no está disponible actualmente.', 'generador-enlaces-carrito' ), 'error' );
+            wc_add_notice( esc_html__( 'El producto no está disponible actualmente.', 'cart-link' ), 'error' );
             return;
         }
 
@@ -84,15 +84,16 @@ class Gencart_Public {
         $already_in_cart = WC()->cart->find_product_in_cart( $cart_item_key );
 
         if ( $already_in_cart ) {
-            wc_add_notice( esc_html__( 'El producto ya estaba en tu carrito.', 'generador-enlaces-carrito' ), 'notice' );
+            wc_add_notice( esc_html__( 'El producto ya estaba en tu carrito.', 'cart-link' ), 'notice' );
         } else {
             $added = WC()->cart->add_to_cart( $product_id );
             if ( ! $added ) {
-                wc_add_notice( esc_html__( 'No se pudo añadir el producto al carrito.', 'generador-enlaces-carrito' ), 'error' );
+                wc_add_notice( esc_html__( 'No se pudo añadir el producto al carrito.', 'cart-link' ), 'error' );
                 return;
             }
 
-            wc_add_notice( sprintf( esc_html__( '%s se añadió correctamente.', 'generador-enlaces-carrito' ), $product->get_name() ), 'success' );
+            /* translators: %s: nombre del producto. */
+            wc_add_notice( sprintf( esc_html__( '%s se añadió correctamente.', 'cart-link' ), $product->get_name() ), 'success' );
         }
 
         $destination = isset( $_GET['dest'] ) ? sanitize_key( wp_unslash( $_GET['dest'] ) ) : get_option( GENCART_OPTION_DEFAULT_DEST, 'cart' );
