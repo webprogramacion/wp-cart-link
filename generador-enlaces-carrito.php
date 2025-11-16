@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Generador de enlaces al carrito
- * Plugin URI:        https://webprogramacion.com
+ * Plugin URI:        https://webprogramacion.com/plugin-cart-link
  * Description:       Genera enlaces personalizados para añadir productos al carrito utilizando un parámetro propio y redirigir a carrito o checkout.
  * Version:           1.0.0
  * Author:            Dámaso Velázquez Álvarez
