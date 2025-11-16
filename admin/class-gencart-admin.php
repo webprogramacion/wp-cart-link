@@ -80,9 +80,30 @@ class Gencart_Admin {
         }
 
         $base_url      = get_permalink( $post->ID );
-        $default_link  = add_query_arg( array( 'add-cart' => 1 ), $base_url );
-        $cart_link     = add_query_arg( array( 'add-cart' => 1, 'dest' => 'cart' ), $base_url );
-        $checkout_link = add_query_arg( array( 'add-cart' => 1, 'dest' => 'checkout' ), $base_url );
+        $nonce         = wp_create_nonce( 'gencart_add_to_cart_' . $post->ID );
+        $default_link  = add_query_arg(
+            array(
+                'add-cart'      => 1,
+                'gencart_nonce' => $nonce,
+            ),
+            $base_url
+        );
+        $cart_link     = add_query_arg(
+            array(
+                'add-cart'      => 1,
+                'dest'          => 'cart',
+                'gencart_nonce' => $nonce,
+            ),
+            $base_url
+        );
+        $checkout_link = add_query_arg(
+            array(
+                'add-cart'      => 1,
+                'dest'          => 'checkout',
+                'gencart_nonce' => $nonce,
+            ),
+            $base_url
+        );
 
         echo '<p>' . esc_html__( 'Copia estos enlaces para compartir con tus clientes. Al visitarlos se añadirá el producto al carrito.', 'cart-link' ) . '</p>';
         echo '<p><label for="gencart-link-default"><strong>' . esc_html__( 'Enlace base', 'cart-link' ) . '</strong></label></p>';

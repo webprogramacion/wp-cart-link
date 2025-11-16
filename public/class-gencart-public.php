@@ -48,12 +48,18 @@ class Gencart_Public {
             return;
         }
 
-        if ( empty( $_GET['add-cart'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        if ( empty( $_GET['add-cart'] ) ) {
             return;
         }
 
         $product_id = get_the_ID();
         if ( ! $product_id ) {
+            return;
+        }
+
+        $nonce = isset( $_GET['gencart_nonce'] ) ? sanitize_text_field( wp_unslash( $_GET['gencart_nonce'] ) ) : '';
+
+        if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'gencart_add_to_cart_' . $product_id ) ) {
             return;
         }
 
