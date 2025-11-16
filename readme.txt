@@ -1,5 +1,5 @@
 === Generador de enlaces al carrito ===
-Contributors: dva
+Contributors: damasovelazquez
 Tags: woocommerce, cart, checkout
 Requires at least: 5.8
 Tested up to: 6.8
