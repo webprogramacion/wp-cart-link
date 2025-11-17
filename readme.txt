@@ -21,3 +21,8 @@ Genera enlaces personalizados para añadir productos al carrito de WooCommerce y
 == Changelog ==
 = 1.0.0 =
 * Versión inicial.
+
+== Screenshots ==
+
+1. Pantalla de configuración desde los ajustes de WooCommerce
+2. Herramienta para copiar el enlace de compra directo desde cada producto
