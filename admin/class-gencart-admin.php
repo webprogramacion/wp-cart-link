@@ -42,7 +42,7 @@ class Gencart_Admin {
     public function register_metabox() {
         add_meta_box(
             'gencart-link-box',
-            esc_html__( 'Enlace al carrito', 'cart-link' ),
+            esc_html__( 'Enlace al carrito', 'add-to-cart-links-generator' ),
             array( $this, 'render_metabox' ),
             'product',
             'side',
@@ -57,25 +57,25 @@ class Gencart_Admin {
      */
     public function render_metabox( $post ) {
         if ( ! function_exists( 'wc_get_product' ) ) {
-            echo '<p>' . esc_html__( 'WooCommerce no está disponible.', 'cart-link' ) . '</p>';
+            echo '<p>' . esc_html__( 'WooCommerce no está disponible.', 'add-to-cart-links-generator' ) . '</p>';
             return;
         }
 
         $product = wc_get_product( $post->ID );
 
         if ( ! $product ) {
-            echo '<p>' . esc_html__( 'Producto no válido.', 'cart-link' ) . '</p>';
+            echo '<p>' . esc_html__( 'Producto no válido.', 'add-to-cart-links-generator' ) . '</p>';
             return;
         }
 
         if ( $product->is_type( 'variable' ) ) {
             // Para simplificar la generación del enlace, los productos variables no son compatibles.
-            echo '<p>' . esc_html__( 'Los productos variables no son compatibles con los enlaces rápidos. Usa una variación específica.', 'cart-link' ) . '</p>';
+            echo '<p>' . esc_html__( 'Los productos variables no son compatibles con los enlaces rápidos. Usa una variación específica.', 'add-to-cart-links-generator' ) . '</p>';
             return;
         }
 
         if ( ! $product->is_in_stock() ) {
-            echo '<p>' . esc_html__( 'El producto está sin stock. No se genera enlace.', 'cart-link' ) . '</p>';
+            echo '<p>' . esc_html__( 'El producto está sin stock. No se genera enlace.', 'add-to-cart-links-generator' ) . '</p>';
             return;
         }
 
@@ -105,13 +105,13 @@ class Gencart_Admin {
             $base_url
         );
 
-        echo '<p>' . esc_html__( 'Copia estos enlaces para compartir con tus clientes. Al visitarlos se añadirá el producto al carrito.', 'cart-link' ) . '</p>';
-        echo '<p><label for="gencart-link-default"><strong>' . esc_html__( 'Enlace base', 'cart-link' ) . '</strong></label></p>';
+        echo '<p>' . esc_html__( 'Copia estos enlaces para compartir con tus clientes. Al visitarlos se añadirá el producto al carrito.', 'add-to-cart-links-generator' ) . '</p>';
+        echo '<p><label for="gencart-link-default"><strong>' . esc_html__( 'Enlace base', 'add-to-cart-links-generator' ) . '</strong></label></p>';
         echo '<input type="text" id="gencart-link-default" class="widefat" readonly value="' . esc_attr( $default_link ) . '" />';
         echo '<div class="gencart-button-group">';
-        echo '<button type="button" class="button gencart-copy-link" data-gencart-target="' . esc_attr( $default_link ) . '" data-notice="' . esc_attr__( 'Enlace copiado (configuración por defecto).', 'cart-link' ) . '">' . esc_html__( 'Copiar enlace (por defecto)', 'cart-link' ) . '</button>';
-        echo '<button type="button" class="button gencart-copy-link" data-gencart-target="' . esc_attr( $cart_link ) . '" data-notice="' . esc_attr__( 'Enlace al carrito copiado.', 'cart-link' ) . '">' . esc_html__( 'Copiar enlace a carrito', 'cart-link' ) . '</button>';
-        echo '<button type="button" class="button gencart-copy-link" data-gencart-target="' . esc_attr( $checkout_link ) . '" data-notice="' . esc_attr__( 'Enlace al checkout copiado.', 'cart-link' ) . '">' . esc_html__( 'Copiar enlace a checkout', 'cart-link' ) . '</button>';
+        echo '<button type="button" class="button gencart-copy-link" data-gencart-target="' . esc_attr( $default_link ) . '" data-notice="' . esc_attr__( 'Enlace copiado (configuración por defecto).', 'add-to-cart-links-generator' ) . '">' . esc_html__( 'Copiar enlace (por defecto)', 'add-to-cart-links-generator' ) . '</button>';
+        echo '<button type="button" class="button gencart-copy-link" data-gencart-target="' . esc_attr( $cart_link ) . '" data-notice="' . esc_attr__( 'Enlace al carrito copiado.', 'add-to-cart-links-generator' ) . '">' . esc_html__( 'Copiar enlace a carrito', 'add-to-cart-links-generator' ) . '</button>';
+        echo '<button type="button" class="button gencart-copy-link" data-gencart-target="' . esc_attr( $checkout_link ) . '" data-notice="' . esc_attr__( 'Enlace al checkout copiado.', 'add-to-cart-links-generator' ) . '">' . esc_html__( 'Copiar enlace a checkout', 'add-to-cart-links-generator' ) . '</button>';
         echo '</div>';
         echo '<div class="gencart-copy-notice" aria-live="polite"></div>';
     }
@@ -144,7 +144,7 @@ class Gencart_Admin {
             'gencart-admin',
             'gencartAdmin',
             array(
-                'fallbackNotice' => esc_html__( 'El navegador no permite copiar automáticamente. Selecciona y copia manualmente.', 'cart-link' ),
+                'fallbackNotice' => esc_html__( 'El navegador no permite copiar automáticamente. Selecciona y copia manualmente.', 'add-to-cart-links-generator' ),
             )
         );
     }
@@ -157,7 +157,7 @@ class Gencart_Admin {
      * @return array
      */
     public function add_settings_tab( $tabs ) {
-        $tabs['gencart'] = esc_html__( 'Enlaces al carrito', 'cart-link' );
+        $tabs['gencart'] = esc_html__( 'Enlaces al carrito', 'add-to-cart-links-generator' );
         return $tabs;
     }
 
@@ -183,21 +183,21 @@ class Gencart_Admin {
     private function get_settings() {
         return array(
             'section_title' => array(
-                'name' => esc_html__( 'Generador de enlaces al carrito', 'cart-link' ),
+                'name' => esc_html__( 'Generador de enlaces al carrito', 'add-to-cart-links-generator' ),
                 'type' => 'title',
-                'desc' => esc_html__( 'Configura el comportamiento general de los enlaces generados.', 'cart-link' ),
+                'desc' => esc_html__( 'Configura el comportamiento general de los enlaces generados.', 'add-to-cart-links-generator' ),
                 'id'   => 'gencart_settings_title',
             ),
             GENCART_OPTION_DEFAULT_DEST => array(
-                'name'     => esc_html__( 'Destino por defecto', 'cart-link' ),
+                'name'     => esc_html__( 'Destino por defecto', 'add-to-cart-links-generator' ),
                 'type'     => 'select',
                 'desc_tip' => true,
-                'description' => esc_html__( 'Determina si los enlaces sin parámetro dest redirigen al carrito o al checkout.', 'cart-link' ),
+                'description' => esc_html__( 'Determina si los enlaces sin parámetro dest redirigen al carrito o al checkout.', 'add-to-cart-links-generator' ),
                 'id'       => GENCART_OPTION_DEFAULT_DEST,
                 'default'  => 'cart',
                 'options'  => array(
-                    'cart'     => esc_html__( 'Carrito', 'cart-link' ),
-                    'checkout' => esc_html__( 'Finalizar compra', 'cart-link' ),
+                    'cart'     => esc_html__( 'Carrito', 'add-to-cart-links-generator' ),
+                    'checkout' => esc_html__( 'Finalizar compra', 'add-to-cart-links-generator' ),
                 ),
             ),
             'section_end' => array(

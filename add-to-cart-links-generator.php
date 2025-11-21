@@ -1,15 +1,18 @@
 <?php
 /**
- * Plugin Name:       Generador de enlaces al carrito
- * Plugin URI:        https://webprogramacion.com/plugin-cart-link
- * Description:       Genera enlaces personalizados para añadir productos al carrito utilizando un parámetro propio y redirigir a carrito o checkout.
+ * Plugin Name:       Add to Cart links generator for WooCommerce
+ * Plugin URI:        https://webprogramacion.com/add-to-cart-links-generator
+ * Description:       Generate custom links to add products to the WooCommerce cart using your own parameter and redirect to cart or checkout.
  * Version:           1.0.0
  * Author:            Dámaso Velázquez Álvarez
  * Author URI:        https://webprogramacion.com
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       cart-link
- * Domain Path:       /languages
+ * Text Domain:       add-to-cart-links-generator
+ * Requires at least: 5.8
+ * Requires PHP:      7.4
+ * WC requires at least: 5.0
+ * WC tested up to:   9.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -28,7 +31,7 @@ define( 'GENCART_OPTION_DEFAULT_DEST', 'gencart_default_destination' );
 function gencart_activate() {
     if ( ! class_exists( 'WooCommerce' ) ) {
         deactivate_plugins( plugin_basename( __FILE__ ) );
-        wp_die( esc_html__( 'Este plugin requiere WooCommerce activo.', 'cart-link' ) );
+        wp_die( esc_html__( 'Este plugin requiere WooCommerce activo.', 'add-to-cart-links-generator' ) );
     }
 }
 register_activation_hook( __FILE__, 'gencart_activate' );

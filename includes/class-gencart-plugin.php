@@ -26,7 +26,7 @@ class Gencart_Plugin {
      *
      * @var string
      */
-    protected $plugin_name = 'cart-link';
+    protected $plugin_name = 'add-to-cart-links-generator';
 
     /**
      * Admin handler.
